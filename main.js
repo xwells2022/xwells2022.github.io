@@ -46,7 +46,7 @@ function multiplicationTable() {
 
 var randNums = [];
 var operations = [" + "," - ", " * ", " / ", " to "]
-var descriptions = ["","","","","Find the indefinite integral of x^2 from "]
+var descriptions = ["","","","","Find the definite integral of x^2 from "]
 function quiz(){
     randNums = [];
 	var lower = parseInt(createPromptAndValidate("Enter a lower bound for the random numbers","2", "int minV:0|", "Your answer must be >= 0"));
