@@ -1,0 +1,175 @@
+/*Xander Wells
+A redo of the mapbox.js CSS because the original version wouldn't work with the newly created buttons that I implemented
+The original version worked as a standalone webpage not an imbedded div, so I modified that too
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.location-map-container {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  height: 28em;
+  border: 2px solid var(--bg-secondary);
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.sidebar {
+  width: 33.3333%;
+  overflow: hidden;
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.pad2 {
+  padding: 20px;
+}
+
+.map {
+  width: 66.6666%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.heading {
+  border-bottom: 1px solid #eee;
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 0.6rem;
+  background-color: var(--bg-secondary);
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.listings {
+  height: calc(100% - 3em);
+  overflow: auto;
+}
+
+.listings-description {
+  margin: auto 0 auto 0.6em;
+}
+
+.listings .item {
+  display: flex;
+  border-bottom: 1px solid var(--bg-secondary);
+  height: 3.5em;
+  text-decoration: none;
+}
+
+.listings .item:last-child {
+  border-bottom: none;
+}
+
+.listings .item .title {
+  display: block;
+  color: var(--bg-secondary);
+  font-weight: 700;
+}
+
+.listings .item .title small {
+  font-weight: 400;
+}
+
+.listings .item.active .title, .listings .item .title:hover {
+  color: var(--bg-primary);
+}
+
+.listings .item.active {
+  background-color: var(--bg-primary-lighter);
+}
+
+.location-select {
+  margin: 0.6rem 0.6rem 0.6rem auto;
+  background-color: var(--bg-primary);
+  border: none;
+  color: var(--text-primary);
+  width: 8rem;
+  font-size: 1em;
+  border-radius: 2px;
+}
+
+.location-select:hover {
+  background-color: var(--bg-primary-darker);
+}
+
+.marker {
+  border: none;
+  cursor: pointer;
+  height: 56px;
+  width: 56px;
+  background-image: url(marker.png);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.clearfix {
+  display: block;
+}
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+/* Marker tweaks */
+
+.mapboxgl-popup {
+  padding-bottom: 50px;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  padding: 0;
+  width: 180px;
+  background-color: var(--bg-primary-lighter);
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content h3 {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  display: block;
+  padding: 10px;
+  border-radius: 3px 3px 0 0;
+  font-weight: 700;
+  margin-top: -15px;
+}
+
+.mapboxgl-popup-content h4 {
+  margin: 0;
+  display: block;
+  padding: 10px 10px 10px 10px;
+  font-weight: 400;
+}
+
+.mapboxgl-popup-content div {
+  padding: 10px;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+  margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: var(--bg-primary-lighter);
+}

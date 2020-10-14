@@ -1,122 +1,484 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            More Loop Stuff
-        </title>
+<html lang="en">
+<!--Xander Wells-->
+<!--Made during the first half of October and also late September (I think)-->
+<!--uses a lot of custom features and went super beyond what's required-->
+<!--I'm gonna go out on a limb and say that this deserves a 120%-->
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>IMSA Car Rental</title>
 
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--various imported sheets/scripts-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        
-    </head>
-    <body>
-        <div class="h-100 row align-items-center">
-            <div class="container">
-                <div class="jumbotron">
-                    <h1 class="display-4">Doing More Stuff With Loops</h1>
-                    <p class="lead">Xander Wells and Rohan Jain</p>
-                    <hr class="my-4">
-                    <p>Uses a bunch of nested for loops to do stuff</p>
+    <!--map stuff-->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="map/map style.css">
+</head>
+
+<body>
+    <!--page header start-->
+    <header class="page-header">
+        <div class="page-header-item"><h1>IMSA RENT-A-CAR</h1></div>
+        <div class="page-header-item">&nbsp &nbsp A WEBPAGE BUILT BY XANDER W</div>
+        <div class="page-header-item">
+            <h4 onclick="openPopup('finalPopup');" class="disclaimer">Disclaimer</h4> | Total: $<span class="total-price"><span
+                    id="totalPaymentDollar">0</span><sup>.<span id="totalPaymentCents">00</span></sup></span>
+        </div>
+    </header>
+    <!--page header end-->
+
+    <!--disclaimer popup start-->
+    <div id="disclaimer" class="popup">
+        <div class="popup-content">
+            <header class="popup-header">
+                <h2>Some Disclaimers:</h2>
+                <span onclick="closePopup('disclaimer')" class="popup-close">&times;</span>
+            </header>
+            <div class="popup-body">
+                <h4>This is just a project</h4>
+                <p>This is not affiliated with IMSA in any way. Please do not sue me lol.</p>
+                <p>I do not take responsibility for anything that occurs with this website.</p>
+                <p>Your data is not secure on here, nor will any payments be processed.</p>
+                <p>Your data is not stored on servers. The loading screen is a lie.</p>
+                <p>You do NOT want to know how long this took me.</p>
+                <p>Page layout may or may not be inspired by Enterprise. Same goes for the images...</p>
+
+                Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+                    href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+            </div>
+        </div>
+    </div>
+    <!--disclaimer popup end-->
+
+    <!--navbar/progress bar start-->
+    <nav class="navbar">
+        <div class="navbar-item" onclick="setTab(0)">
+            <div class="navbar-item-content">
+                <h4><span class="navbar-num-label">①</span> TIMEFRAME</h4>
+                <div class="navbar-item-content-details"></div>
+            </div>
+            <div class="navbar-arrow-up"></div>
+        </div>
+        <div class="navbar-arrow-right">🡢</div>
+        <div class="navbar-item" onclick="setTab(1)">
+            <div class="navbar-item-content navbar-gray">
+                <h4><span class="navbar-num-label">②</span> LOCATION</h4>
+                <div class="navbar-item-content-details"></div>
+            </div>
+            <div class="navbar-arrow-up"></div>
+        </div>
+        <div class="navbar-arrow-right">🡢</div>
+        <div class="navbar-item" onclick="setTab(2)">
+            <div class="navbar-item-content navbar-gray">
+                <h4><span class="navbar-num-label">③</span> VEHICLES</h4>
+                <div class="navbar-item-content-details"></div>
+            </div>
+            <div class="navbar-arrow-up"></div>
+        </div>
+        <div class="navbar-arrow-right">🡢</div>
+        <div class="navbar-item" onclick="setTab(3)">
+            <div class="navbar-item-content navbar-gray">
+                <h4><span class="navbar-num-label">④</span> CHECKOUT</h4>
+                <div class="navbar-item-content-details"></div>
+            </div>
+            <div class="navbar-arrow-up"></div>
+        </div>
+    </nav>
+    <!--navbar/progress bar end-->
+
+    <!--timeframe start-->
+    <main id="timeframe" class="reservation-step">
+        <header class="timeframe-header">
+            <h1>CHOOSE A DATE & TIME</h1>
+        </header>
+        <div class="timeframe-form-group">
+            <div class="timeframe-form-input timeframe-form-left">
+                <label class="bold" for="datetimes">TIMEFRAME:</label>
+                <input class="timeframe-input" type="text" name="datetimes" id="datetimes" />
+                <!--time and date field using datetimepicker-->
+            </div>
+
+            <div class="timeframe-form-input timeframe-form-right">
+                <label class="bold" for="age">RENTER AGE:</label> <!--age select-->
+                <select class="timeframe-input" name="age" id="age">
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option selected value="25+">25+</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="timeframe-form-group">
+            <div class="timeframe-form-input timeframe-form-left">
+                <label for="promo">PROMO CODE</label> <!--promo code-->
+                <input class="timeframe-input" type="text" name="promo" id="promo">
+            </div>
+            <div class="timeframe-form-input timeframe-form-right">
+                <button class="timeframe-form-button" onclick="setTab(1,true)">CONTINUE</button>
+            </div>
+        </div>
+    </main>
+    <!--timeframe end-->
+
+    <!--location start-->
+    <main id="location" class="reservation-step">
+        <header class="location-header">
+            <h1>CHOOSE A LOCATION</h1>
+            <button class="location-header-next" onclick="setTab(2,true)">GO TO VEHICLE SELECT</button>
+        </header>
+        <section class="location-display"> <!--display pickup and dropoff selections-->
+
+            <div class="location-display-section location-active" id="PickupContainer">
+                <header class="location-display-section-header">
+                    Pickup:
+                </header>
+                <div class="location-display-section-content" onclick="setDestination('Pickup')" id="Pickup">
                 </div>
+            </div>
 
-                <div class="card-deck">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Multiplication Table Info:</h5>
-                            <p class="card-text">Input a bunch of parameters and then see a multiplication table. Parameters include: number of columns, number of 
-                                rows, interval between both columns and rows, and starting number
-                            </p>
-                            <button onclick="multiplicationTable(); $('#mult-table').modal('show')" class="btn btn-primary">Click for Multiplication Table</button>
+            <div class="location-display-section" id="DropoffContainer">
+                <header class="location-display-section-header">
+                    Dropoff:
+                </header>
+                <div class="location-display-section-content" onclick="setDestination('Dropoff')" id="Dropoff">
+                </div>
+            </div>
+        </section>
+
+        <!--mapbox.js stuff (featuring custom buttons of course)-->
+        <div class="location-map-container">
+            <div class="sidebar">
+                <div class="heading">
+                    Select <span id="headingDestination">Pickup</span> Location:
+                </div>
+                <div id="listings" class="listings"></div>
+            </div>
+            <div id="map" class="map"></div>
+        </div>
+    </main>
+    <!--location end-->
+
+    <!--car selection start-->
+    <main id="cars" class="reservation-step">
+        <header class="car-header">
+            <h1>CHOOSE A VEHICLE</h1>
+            <h3 class="car-header-results"><span id="carHeaderResults">10</span> RESULTS</h3>
+            <button class="car-header-next" onclick="setTab(3,true)">GO TO CHECKOUT</button>
+            <div class="car-header-sorting"> <!--lets you sort by various methods-->
+                SORT BY
+                <select onchange="updateSorting();" name="sortingMethod" id="sortingMethod"
+                    class="car-header-sorting-dropdown">
+                    <option value="price asc">Price Low to High</option>
+                    <option value="price desc">Price High to Low</option>
+                    <option value="name asc">Brand A to Z</option>
+                    <option value="name desc">Brand Z to A</option>
+                </select>
+            </div>
+        </header>
+        <div class="car-main">
+
+            <div class="car-container" id="carContainer"></div>
+
+            <!--template for available cars-->
+            <template id="carListingTemplate">
+                <section class="car-listing">
+                    <div class="car-listing-image">
+                        <img class="car-listing-image-src" src="" alt="car">
+                    </div>
+
+                    <div class="car-listing-details">
+                        <h1 class="car-details-type"></h1>
+                        <p class="car-details-name"></p>
+                        <div class="car-details-attributes">
+                            <img src="svgs/manual-transmission.svg" alt="icon" class="car-details-icon">
+                            <span class="car-details-transmission"></span> &nbsp&nbsp&nbsp
+
+                            <img src="svgs/user.svg" alt="icon" class="car-details-icon">
+                            <span class="car-details-people"></span> People &nbsp&nbsp&nbsp
+
+                            <img src="svgs/luggage.svg" alt="icon" class="car-details-icon">
+                            <span class="car-details-bags"></span> Bags
                         </div>
                     </div>
+                    <div class="car-listing-payment">
+                        <h5 class="car-listing-payment-header">PAYMENT</h5>
+                        <table class="car-listing-payment-table">
+                            <td class="car-listing-payment-table-tile">
+                                <sup class="car-price-sup">$</sup>
+                                <span class="car-price-day-dollar"></span>
+                                <sup class="car-price-sup">.
+                                    <span class="car-price-day-cents"></span>
+                                </sup>
+                                <p class="car-price-timeframe">per day</p>
+                            </td>
+                            <td class="car-listing-payment-table-tile">
+                                <sup class="car-price-sup">$</sup>
+                                <span class="car-price-total-dollar"></span>
+                                <sup class="car-price-sup">.
+                                    <span class="car-price-total-cents"></span>
+                                </sup>
+                                <p class="car-price-timeframe">total</p>
+                            </td>
+                        </table>
+                        <button class="car-select-button">SELECT</button>
+                    </div>
+                </section>
+            </template>
+            <!--template end-->
+        </div>
+    </main>
+    <!--car selection end-->
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Quiz Info:</h5>
-                            <p class="card-text">Input a lower and upper bound and then generate a quiz using random numbers from within that bound.</p>
-                            <button onclick="quiz(); $('#quiz').modal('show')" class="btn btn-primary">Click for Quiz</button>
+    <!--checkout section begin-->
+    <main id="checkout" class="reservation-step">
+        <header class="checkout-header">
+            <h1>REVIEW INFO</h1>
+        </header>
+        <section class="review-content-container">
+            <section class="review-content-left">
+                <header class="review-content-header">
+                    <p>VEHICLES</p>
+                    <button onclick="setTab(2, true)">CHANGE</button>
+                </header>
+                <section class="review-content-car" id="reviewContentCar"></section>
+                <!--container for car checkout template-->
+                <section class="review-content-section review-content-section-price">
+                    <div class="review-content-label">TOTAL PRICE:</div>
+                    <div class="review-content-info" id="totalPrice"></div>
+                </section>
+
+                <!--template for cars in checkout-->
+                <template id="checkoutListingTemplate">
+                    <div class="checkout-listing">
+                        <img class="checkout-listing-image" src="car images/Dodge Grand Caravan.webp" alt="car">
+                        <div class="checkout-listing-payment">
+                            <h1 class="checkout-listing-header"></h1>
+                            <table class="checkout-listing-payment-table">
+                                <td class="checkout-listing-payment-table-tile">
+                                    <sup class="car-price-sup">$</sup>
+                                    <span class="car-price-total-dollar">88</span>
+                                    <sup class="car-price-sup">.
+                                        <span class="car-price-total-cents">76</span>
+                                    </sup>
+                                    <p class="car-price-timeframe">total</p>
+                                </td>
+                                <td class="checkout-listing-payment-table-tile">
+                                    <button class="checkout-listing-remove">REMOVE FROM CART</button>
+                                </td>
+                            </table>
                         </div>
                     </div>
+                </template>
+                <!--template end-->
+
+            </section>
+            <section class="review-content-right">
+                <div class="review-content-right-sub">
+                    <header class="review-content-header">
+                        <p>TIMEFRAME</p>
+                        <button onclick="setTab(0, true)">CHANGE</button>
+                    </header>
+                    <section class="review-content-section">
+                        <div class="review-content-label">PICKUP TIME:</div>
+                        <div class="review-content-info" id="startTime"></div>
+                    </section>
+                    <section class="review-content-section">
+                        <div class="review-content-label">DROPOFF TIME:</div>
+                        <div class="review-content-info" id="endTime"></div>
+                    </section>
                 </div>
+                <div class="review-content-right-sub">
+                    <header class="review-content-header">
+                        <p>LOCATION</p>
+                        <button onclick="setTab(1, true)">CHANGE</button>
+                    </header>
+                    <section class="review-content-section">
+                        <div class="review-content-label">PICKUP LOCATION:</div>
+                        <div class="review-content-info" id="pickup"></div>
+                    </section>
+                    <section class="review-content-section">
+                        <div class="review-content-label">DROPOFF LOCATION:</div>
+                        <div class="review-content-info" id="dropoff"></div>
+                    </section>
+                </div>
+                <button onclick="openPopup('payment')" id="checkoutButton">CHECKOUT</button> <!--only shown if checkout is filled-->
+            </section>
+        </section>
+    </main>
+    <!--checkout section end-->
+
+    <!--payment popup start-->
+    <div id="payment" class="popup">
+        <div class="popup-content" id="paymentContent">
+            <header class="popup-header">
+                <h2>ENTER PAYMENT INFO</h2>
+                <span onclick="closePopup('payment')" class="popup-close">&times;</span>
+            </header>
+            <div class="popup-body" id="paymentBody">
+                <form action="#" id="paymentForm">
+                    <!--reusing timeframe form styling-->
+                    <!--https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation-->
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-center">
+                            <label class="bold" for="firstName">FIRST NAME:</label>
+                            <!--first name-->
+                            <input class="timeframe-input" type="text" name="firstName" id="firstName" required />
+                        </div>
+                        <div class="timeframe-form-input timeframe-form-center">
+                            <label class="bold" for="lastName">LAST NAME:</label>
+                            <!--last name-->
+                            <input class="timeframe-input" type="text" name="lastName" id="lastName" required />
+                        </div>
+                    </div>
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-full">
+                            <label class="bold" for="ccNum">CREDIT CARD NUMBER:</label>
+                            <!--cc number-->
+                            <input class="timeframe-input" type="text" name="ccNum" id="ccNum" required />
+                        </div>
+                    </div>
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="expMonth">EXP MONTH:</label>
+                            <!--exp month selection-->
+                            <select class="timeframe-input" name="expMonth" id="expMonth">
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="expYear">EXP YEAR:</label>
+                            <!--exp year selection-->
+                            <select class="timeframe-input" name="expYear" id="expYear">
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="cvv">CVV:</label>
+                            <!--cvv-->
+                            <input class="timeframe-input" type="number" name="cvv" id="cvv" required min="1"
+                                max="999" />
+                        </div>
+                    </div>
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-full">
+                            <label class="bold" for="address">ADDRESS:</label>
+                            <!--address-->
+                            <input class="timeframe-input" type="text" name="address" id="address" required />
+                        </div>
+                    </div>
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="city">CITY:</label>
+                            <!--city-->
+                            <input class="timeframe-input" type="text" name="city" id="city" required />
+                        </div>
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="state">STATE:</label>
+                            <!--state-->
+                            <input class="timeframe-input" type="text" name="state" id="state" required />
+                        </div>
+                        <div class="timeframe-form-input timeframe-form-third">
+                            <label class="bold" for="zip">ZIP:</label>
+                            <!--zip code-->
+                            <input class="timeframe-input" type="number" name="zip" id="zip" required min="1"
+                                max="99999" />
+                        </div>
+                    </div>
+                    <div class="timeframe-form-group">
+                        <div class="timeframe-form-input timeframe-form-full">
+                            <label class="bold" for="email">EMAIL: <small>(YOUR INVOICE WILL BE SENT HERE, FOR REAL, SO PLEASE ENTER CORRECTLY)</small>
+                                <!--actually sends an email so enter this one correctly please-->
+                            </label>
+                            <input class="timeframe-input" type="email" name="email" id="email" required />
+                        </div>
+                    </div>
+                    <div class="submit-button-contatiner">
+                        <button id="submitPayment">SUBMIT PAYMENT</button>
+                        <!--submit-->
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+    <!--payment popup end-->
 
-        <!-- Modal For Mult Table-->
-        <div class="modal fade" id="mult-table" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Multiplication Table</h5>
-                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="resultBox" class="table-responsive"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button onclick="multiplicationTable()" class="btn btn-outline-primary">Try Again</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+    <!--final popup start-->
+    <div id="finalPopup" class="popup">
+        <div class="popup-content">
+            <header class="popup-header">
+                <h2>Thank You!</h2>
+                <span onclick="reload()" class="popup-close">&times;</span>
+                <!--reload on close, which also closes the popup itself-->
+            </header>
+            <div class="popup-body">
+                <h3>Thank you for your reservation!</h3>
+                <p>An invoice has been sent to the email address that you provided.</p>
+                <button onclick="reload()" id="reloadButton">MAKE ANOTHER RESERVATION</button>
             </div>
         </div>
+    </div>
+    <!--final popup end-->
 
-        <!-- Modal For Quiz-->
-        <div class="modal fade" id="quiz" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Here's your quiz:</h5>
-                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                        
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <small class="form-text">Round your answers to 2 decimal points, if applicible</small>
-                            </div>
-                            <div class="form-group">
-                              
-                              <label for="answer1" id="question1"></label>
-                              <input type="text" class="form-control" id="answer1">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer2" id="question2"></label>
-                                <input type="text" class="form-control" id="answer2">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer3" id="question3"></label>
-                                <input type="text" class="form-control" id="answer3">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer4" id="question4"></label>
-                                <input type="text" class="form-control" id="answer4">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer5" id="question5"></label>
-                                <input type="text" class="form-control" id="answer5">
-                            </div>
-                        </form>
-                        <div id = "score"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button onclick="check()" class="btn btn-info">Check Answers</button>
-                        <button onclick="quiz()" class="btn btn-outline-primary">Try Again</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+    <!--loading screen start-->
+    <section id="progressScreen">
+        <div id="progressScreenContent">
+            <h1 id="loadingText"></h1>
+            <div id="progressBarContainer">
+                <div id="progressBar"></div>
             </div>
         </div>
+    </section>
+    <!--loading screen end-->
 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!--prevents you from seeing the screen when not in fullscreen mode-->
+    <section id="viewBlocker">
+        <div id="viewBlockerContent">
+            <header>This Page Is Suited For Fullscreen Desktop Usage Only</header>
+            <p>Please resize your browser window to be at least 1920px wide</p>
+        </div>
+    </section>
 
-        <script src="main.js"></script>
-    </body>
+    <!--many scripts-->
+    <script src="popup.js"></script>
+    <script src="tabHandler.js"></script>
+    <script src="timeframe.js"></script>
+    <script src="location.js"></script>
+    <script src="car class.js"></script>
+    <script src="vehicle.js"></script>
+    <script src="map/store locations.js"></script>
+    <script src="map/map.js"></script>
+    <script src="checkout.js"></script>
+</body>
+
 </html>
