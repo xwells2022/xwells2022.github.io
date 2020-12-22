@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xander's Political Spectrum Project</title>
+    <style>
+        :root {
+            --background: rgb(18, 18, 18);
+            --table: rgb(18, 18, 18);
+            --border: rgb(48, 50, 53);
+            --button: rgb(48, 50, 53);
+            --buttonHover: rgb(48, 50, 53, 0.8);
+            --numButton: rgb(35, 36, 37);
+            --numButtonHover: rgb(35, 36, 37, 0.7);
+            --submit: rgb(65, 105, 225);
+            --submitHover: rgb(65, 105, 225, 0.8);
+            --text-light: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--background) 21px, var(--border) 22px, var(--border) 24px, transparent 24px, transparent 67px, var(--border) 67px, var(--border) 69px, transparent 69px), linear-gradient(225deg, var(--background) 21px, var(--border) 22px, var(--border) 24px, transparent 24px, transparent 67px, var(--border) 67px, var(--border) 69px, transparent 69px)0 64px;
+            background-color: var(--background);
+            background-size: 64px 128px;
+            color: var(--text-light);
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        aside {
+            background-color: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            margin-right: 3rem;
+            height: 53rem;
+            width: 35rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--border);
+            height: 4rem;
+            font-size: 2rem;
+            display: flex;
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .textarea {
+            margin: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            width: 100%;
+            height: 15rem;
+        }
+
+        .textarea header {
+            height: 2.5rem;
+            font-size: 1.25rem;
+        }
+
+        .textarea div {
+            padding: 1rem;
+            font-size: 1.25rem;
+        }
+
+        table {
+            border: 2px solid var(--border);
+            border-radius: 5px;
+            background-color: var(--background);
+            border-spacing: 0.25rem;
+        }
+
+        tr {
+            height: 30px;
+        }
+
+        td {
+            width: 45px;
+        }
+
+        .name {
+            border: 1px solid var(--border);
+            text-align: center;
+            border-radius: 4px;
+            background: var(--button);
+        }
+
+        .name:hover {
+            animation: expand 0.2s ease forwards;
+        }
+
+        @keyframes expand {
+            100% {
+                transform: scale(1.1);
+                background: var(--buttonHover);
+                border: 1px solid var(--submit);
+            }
+        }
+
+        .rotate {
+            white-space: nowrap;
+            text-overflow: clip;
+            height: 50px;
+            width: 30px;
+            transform: translate(15px, 285px) rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <aside>
+            <header>
+                Xander's Political Spectrum Project
+            </header>
+            <section>
+                <div class="textarea">
+                    <header>
+                        Religion
+                    </header>
+                    <div id="religion">
+                        Click a name to see more info
+                    </div>
+                </div>
+                <br>“+” Religion is the foundation of government.<br><br>
+                “−” Religion is only good as a tool to control the masses.<br><br>
+                <div class="textarea">
+                    <header>
+                        Hierarchy
+                    </header>
+                    <div id="hierarchy">
+                        Click a name to see more info
+                    </div>
+                </div>
+                <br>“+” Power is controlled in the hands of the few, society is divided into several permanent tiers,
+                and those with power have few limitations.<br><br>
+                “−” Power is controlled by the populace, few (if any) social tiers, and strong checks and balances.
+            </section>
+        </aside>
+        <table>
+            <tbody>
+                <tr id="tr1">
+                    <th rowspan="25" id="th1">
+                        <div class="rotate">
+                            −
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            ← Religion Spectrum →
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            +
+                        </div>
+                    </th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Augustine')">St. Augustine</td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Calvin')">J. Calvin</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Luther')">M. Luther</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Cicero')">Cicero</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Seneca')">Seneca</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Bodin')">Bodin</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Montesquieu')">Montesquieu</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Polybius')">Polybius</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Hobbes')">Hobbes</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Harrington')">Harrington</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Locke')">Locke</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Hume')">Hume</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Rousseau')">Rousseau</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'AntiFederalists')">Anti
+                        <br>Federalists
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Federalists')">Federalists</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Aristotle')">Aristotle</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Plato')">Plato</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2" rowspan="2" class="name" onclick="loadText(this,'Machiavelli')">Machiavelli</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <th colspan="19">
+                    −
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    ← Hierarchy Spectrum →
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    +
+                </th>
+            </tbody>
+        </table>
+    </main>
+    <script>
+        var religionBox = document.getElementById("religion");
+        var hierarchyBox = document.getElementById("hierarchy");
+
+        function loadText(object, text) {
+            religionBox.innerHTML = info[text][0];
+            hierarchyBox.innerHTML = info[text][1];
+        }
+
+        var info = [];
+        info["Augustine"] = [
+            `St. Augustine placed a strong emphasis on religion, saying that everyone should live their life under God and that doing so will elevate you to the City of God, a wonderful place full of rational people.`,
+            `St. Augustine clearly differentiated between the two types of people: those who live in the City of God and those who are confined within the City of Earth. Although he believes that the City of God is a much more enjoyable place, he does not encourage those from the City of God to rule over those from the City of Earth.`
+        ];
+
+        info["Calvin"] = [
+            `Calvin believed that the church was necessary as an intermediary to salvation, but that the Church could only censor information and couldn’t use the sword. He also states that Christians are not obligated to respect anything external to God. `,
+            `Calvin believed that governments should enforce their laws thoroughly and be strict and severe with punishments. However, it was also wrong for man-made law to be imposed upon the soul, since temporal powers cannot extend to what is beyond the earth.`
+        ];
+
+        info["Luther"] = [
+            `Luther argued that those who have faith in God do not need Law because they have the Holy Spirit in their heart. However, he thinks there are too few true Christians to form a common Christian government and that it is foolish to command people to believe in the Church.`,
+            `Luther advocated obedience to secular power regardless of one’s religion. Inequality was natural, and resisting authority was not an option. However, it was also the job of the community to look over the weak and the job of the state to encourage education, culture, and physical welfare.`
+        ];
+
+        info["Cicero"] = [
+            `Cicero states that man and God share the gift of reason which means that they share Law and Justice. He also states that God is a supreme being who especially distinguishes mankind from other animals. Additionally, Law is also determined by the will of God, and those who disobey will be punished.`,
+            `Cicero argued that law was to be supreme and that no one could be allowed to escape its reach, kings included. Furthermore, his ideal government was a trust dedicated to the welfare of the citizens. This creates a comparatively egalitarian social system. `
+        ];
+
+        info["Seneca"] = [
+            `Seneca mentions that the wise man’s soul should have the quality of a god’s. He also believes in the soul, which to him is split into the rational and irrational. However, while he states that the king should act as a god to his subjects, he does not mention divine rights.`,
+            `Seneca worshiped the king as a god on earth and values the divinity of the monarchy. He described the monarch as a benevolent father of his people, the person who held the country united, and the man who was a god to his subjects.`
+        ];
+
+        info["Bodin"] = [
+            `Bodin focused largely on the powers of the sovereign. However, he does mention how the sovereign is bound by the eternal law of God, thus implying a moderate connection to God.`,
+            `Bodin placed very few restrictions on governmental power. A singular prince existed that had absolute and perpetual power, meaning that there were no conditions attached to the power and the power could not be revoked. The only bounds are that the prince cannot violate natural law, the eternal law of God, or fundamental laws.`
+        ];
+
+        info["Montesquieu"] = [
+            `Montesquieu’s idea of laws include religion. However, it also includes a variety of other factors such as the physical environment, social phenomena, and citizen behavior. Furthermore, Laws are determined by empirical research conducted by people, not observed by priests.`,
+            `Montesquieu approached government through a relativistic and empirical standpoint and tried to remain as objective as possible. Eventually, he reached an ideal system where no one person could control more than one of either legislative, executive, or judicial power.`
+        ];
+
+        info["Polybius"] = [
+            `Polybius emphasized that the Roman system was successful because of its mixed constitution, not its religion. To him, stability is created by a government where several groups possessed power and were restrained by a system of checks and balances.`,
+            `Polybius advocated for government where several groups possess power so that it is harder for the government to become corrupted. Like rock-paper-scissors, each group could be checked by others. They all cooperated to execute policy and take the masses into account.`
+        ];
+
+        info["Hobbes"] = [
+            `Hobbes based his arguments on his observations. Unlike many others before him, his view of society is one based on men acting kind out of their own nature instead of a God that established Laws for people to follow.`,
+            `Under the belief that men have equal powers, Hobbes believed that mankind must willingly give up part of their free will in exchange for a powerful sovereign to ensure order. Although the sovereign was powerful, it still had to satisfy the needs of its citizens or else face death.`
+        ];
+
+        info["Harrington"] = [
+            `Harrington did not mention the incorporation of religion within the government. Instead, he focused on the measures needed to create a secure nation, placing emphasis on election privacy, a written constitution, wealth limits, and term limits.`,
+            `Harrington strongly opposed absolute governments and proposed many solutions to prevent the formation of such. He opposed the monopolization of power and supported many devices common today such as the secret ballot, term limits, and checks and balances.`
+        ];
+
+        info["Locke"] = [
+            `Locke does not discuss religion or the notion of Laws established by God and instead determined that power came from the people and that rulers were acting for the common good. He also believed that the state of nature was self-governed and that people would be civil even without religion.`,
+            `Locke believed that the state of nature was not worse than the worst government and that the state must produce a minimum benefit in order to avoid justifiable revolution. Additionally, power came from the people, laws were rooted in common consent, and the rulers were to act for the common good.`
+        ];
+
+        info["Hume"] = [
+            `Hume’s work did not touch on religion. His work focused on disproving the notion of the social contract, and he approaches his work through a more scientific lens than a religious one.`,
+            `Hume argued that judgments be made based on empirical research instead of blind and abstract reasoning, which is what many past philosophers relied on. However, Hume also believed that an aristocracy was the best form of government with power given only to men of property.`
+        ];
+
+        info["Rousseau"] = [
+            `Rousseau did not believe in power bestowed to the leader by God, stating that no leader can ever be as perfect as God. This forms his argument that there can never be a successful monarch that is capable of guiding their country alone - no singular person has that skill.`,
+            `Rousseau brought about the idea of the general will which is the real source for legitimate authority. Determined by popular vote, the general will is always right and tends to the public advantage. Although the general will might not align perfectly with everyone’s individual wills, individuals obey the general rule nonetheless, and it serves them as often as possible.`
+        ];
+
+        info["AntiFederalists"] = [
+            `While most Anti-Federalists were religious at the time, their arguments focus more on policies related to federalization and state power.`,
+            `The Anti-Federalists opposed a stronger national government because they believed that it could lead to the oppression of the people. They criticized the national government as being unnecessary to keep peace among citizens as well as to defend against foreign invaders.`
+        ];
+
+        info["Federalists"] = [
+            `Just like the Anti-Federalists, the Federalists were not concerned with religion and instead focused on federalization and state power.`,
+            `The Federalists supported a stronger national republic that gave the federal government powers over the state governments. Compared to the Anti-Federalists, this involves one extra hierarchical layer. However, this additional layer is not authoritative and leaves plenty of room for local state legislation.`
+        ];
+
+        info["Aristotle"] = [
+            `Aristotle believed that religion was false. However, despite his criticisms of traditional religion, he believes that it is needed for cities to be established and stay thriving.`,
+            `Aristotle believed that monarchies and tyrannies are less likely to succeed because they give too much power to the minority. Ideally, his system involves the middle-class ruling over the minority rich and poor classes, and there are few “layers” to his hierarchy. `
+        ];
+
+        info["Plato"] = [
+            `Plato doesn’t pay much attention to religion. To him, its main use is for the guardians or philosopher-king (depending on whether the ideal or lesser version has been established) to be able to enforce society’s hierarchy through the concept of divine metals. `,
+            `Plato believed in a social hierarchy and tells people that they either have divine souls of bronze, iron, silver, or gold. Although these rankings are not necessarily hereditary (it is possible for someone to be born into a higher or lower class), they are ingrained in society and people can’t change their rank.`
+        ];
+
+        info["Machiavelli"] = [
+            `Machiavelli had little interest in spiritual matters, focusing more on the political aspect of religion. To him, religion was a way of uniting people under their leader, and it provided an easy reason for people to obey laws that they don’t fully understand.`,
+            `Machiavelli was a proponent of domination and encouraged conquerors to make themselves feared and loved, with a strong focus on fear. Although he discourages property theft, he believes that rulers must bypass law and use brute force if necessary.`
+        ];
+
+
+    </script>
+</body>
+
+</html>
